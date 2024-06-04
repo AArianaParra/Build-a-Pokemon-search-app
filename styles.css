@@ -1,105 +1,126 @@
 :root {
-    --body-color: black;
-    --search-background-color: white;
-    --behind-search-background-color:  yellow;
-    }
+  --body-color: black;
+  --search-background-color: white;
+  --behind-search-background-color:  yellow;
+  --th-color: rgba(173, 216, 230, 0.895);
+  --tr-color: darkblue;
+  --table-font-color: white;
+  }
+  
+  * {
+    color: black;
+    box-sizing: border-box;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  html {
+    font-family: Courier, Helvetica, Verdana;
+   scroll-behavior: smooth;
+  }
+  
+  body {
+    background: var(--body-color);
+  }
+  
+  header {
+    margin: 30px auto;
+  }
+  
+  h1 {
+    color:white;
+    margin-bottom: 20px;
+  }
+  
+  #search-background {
+    background: var(--search-background-color);
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    border: solid;
+  }
+  
+  #behind-search-background {
+    background: var(--behind-search-background-color);
+    width: 450px;
+    max-width: 450px;
+    height: 900px;
+    border-radius: 15px;
+    position: relative;
+  }
+  
+  p {
+    margin: 20px auto;
+    font-size: 1.1rem;
+  }
+  
+  input, button {
+    height: 35px;
+  }
+  
+  input {
+    width: 200px;
+    border: solid 2px;
+    border-radius: 8px;
+    font-size: 1.1em;
+  }
+  
+  button {
+    width: 40px;
+    border-radius: 10px;
+    background: rgba(128, 201, 226, 0.471);
+  }
+  
+  button:hover {
+     background: linear-gradient(rgba(128, 201, 226, 0.121), rgba(128, 201, 226, 0.471)); 
+  }
+  
+  #search-section {
+    height: 10%;
+  }
+  
+  #result-section {
+    height: 80%;
+    font-family: Arial;
+  }
+  
+  #pokemon-card {
+    height: 50%;
+    width: 90%;
+    background: rgba(128, 128, 128, 0.094);
+  }
+  
+  #pokemon-features-table-container {
+    padding: 8px;
+  }
+  
+  table {
+    width: 93%;
+      border-collapse: separate;
+      border-spacing: 4px;
+  }
+  
+  th {
+    background: var(--th-color);
+    color: black;
+    padding: 15px;
+    font-size: 1.4rem;
+  
+  }
+  
+  tr, td {
+    padding: 15px;
+    color: var(--table-font-color);
+    background: var(--tr-color);
+    font-size: 1.2rem;
+  }
+  
+  
+  /*MEDIA*/
+  
+  @media screen and (max-width: 480px) {
     
-    * {
-      color: black;
-      box-sizing: border-box;
-      margin: 0 auto;
-      text-align: center;
-    }
-    
-    html {
-      font-family: Courier, Helvetica, Verdana;
-     scroll-behavior: smooth;
-    }
-    
-    body {
-      background: var(--body-color);
-    }
-    
-    header {
-      margin: 30px auto;
-    }
-    
-    h1 {
-      color:white;
-      margin-bottom: 20px;
-    }
-    
-    #search-background {
-      background: var(--search-background-color);
-      width: 100%;
-      height: 100%;
-      border-radius: 15px;
-      position: absolute;
-      top: -15px;
-      left: -15px;
-      border: solid;
-    }
-    
-    #behind-search-background {
-      background: var(--behind-search-background-color);
-      width: 450px;
-      max-width: 450px;
-      height: 900px;
-      border-radius: 15px;
-      position: relative;
-    }
-    
-    p {
-      margin: 20px auto;
-    }
-    
-    input, button {
-      height: 35px;
-    }
-    
-    input {
-      width: 200px;
-      border: solid 2px;
-      border-radius: 8px;
-      font-size: 1.1em;
-    }
-    
-    button {
-      width: 40px;
-      border-radius: 10px;
-      background: rgba(128, 201, 226, 0.471);
-    }
-    
-    button:hover {
-       background: linear-gradient(rgba(128, 201, 226, 0.121), rgba(128, 201, 226, 0.471)); 
-    }
-    
-    #search-section {
-      height: 10%;
-    }
-    
-    #result-section {
-      height: 80%;
-      font-family: Arial;
-    }
-    
-    #pokemon-card {
-      height: 50%;
-      width: 90%;
-      background: rgba(128, 128, 128, 0.094);
-    }
-    
-    #pokemon-features-table {
-      padding: 8px;
-      background: pink;
-    }
-    
-    table {
-      background: lightblue;
-    }
-    
-    /*MEDIA*/
-    
-    @media screen and (max-width: 480px) {
-      
-    }
+  }
