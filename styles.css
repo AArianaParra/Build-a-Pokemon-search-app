@@ -54,7 +54,6 @@
   
   p {
     margin: 20px auto;
-    font-size: 1.1rem;
   }
   
   input, button {
@@ -91,6 +90,53 @@
     height: 50%;
     width: 90%;
     background: rgba(128, 128, 128, 0.094);
+    position: relative;
+  }
+  
+  #pokemon-name-id-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    font-weight: bold;
+  }
+  
+  #pokemon-img-container {
+      position: absolute;
+    top: 50px;
+    left: 0;
+    padding: 5px;
+    height: 250px;
+    width: 100%;
+  }
+  
+  img {
+    width: 50%;
+    height: 100%;
+    //cursor: not-allowed;
+  }
+  
+  #pokemon-height-weight-tag {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    padding-left: 10px;
+  }
+  
+  #types {
+    height: 50px;
+    position: absolute;
+    top: 308px;
+    left: 0;
+    padding: 5px;
+  }
+  
+   //For the dynamic types
+  .types {
+    height: 35px;
+    width: 80px;
+    border-radius: 10px;
+    vertical-align: center;
   }
   
   #pokemon-features-table-container {

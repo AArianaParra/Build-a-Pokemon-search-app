@@ -1,14 +1,18 @@
 /* Creating variables */
 const searchInput = document.getElementById("search-input");
 const searchButton = document.getElementById("search-button");
-const pokemonCard = document.getElementById("pokemon-card");
+const pokemonName = document.getElementById("pokemon-name");
+const pokemonId = document.getElementById("pokemon-id");
+const pokemonImgContainer = document.getElementById("pokemon-img-container");
+const pokemonHeight = document.getElementById("height");
+const pokemonWeight = document.getElementById("weight");
 const hpTag = document.getElementById("hp-tag");
 const attackTag = document.getElementById("attack-tag");
 const defenseTag = document.getElementById("defense-tag");
 const spAttackTag = document.getElementById("sp-attack-tag");
 const spDefenseTag = document.getElementById("sp-defense-tag");
 const speedTag = document.getElementById("speed-tag");
-const allPokemonList = "https://pokeapi-proxy.freecodecamp.rocks/api/pokemon";
+const allPokemonListUrl = "https://pokeapi-proxy.freecodecamp.rocks/api/pokemon";
 
 /* Functions */
 //-----------------------
@@ -17,13 +21,14 @@ const checkUserInput = (input) =>  {
   regex.map((reg) => {
     input = input.replace(reg, "");
   });
+  //console.log(input)
   fetchData(input)
   //return input;
 }
 //-----------------------
 const fetchData = async (input) => {
   try {
-    const response = await fetch(allPokemonList);
+    const response = await fetch(allPokemonListUrl);
     const data = await response.json();
     //console.log(data); Only to check whether the data is well-fetched
     checkIdOrName(input, data);
@@ -43,12 +48,12 @@ const checkIdOrName = (input, data) => {
 
   if (inputTry) {
     //Here we are gonna search for the ID (use inputTry)
-    searchId(data, input);
-  }
+    searchId(data, inputTry);
+  } 
   else {
     input = input.toLowerCase(); //It also works with hyphens
     searchName(data, input);
-    console.log(input);
+    //console.log(input);
         //Here we are gonna search for the name
   }
 }
@@ -60,28 +65,79 @@ const searchId = (data, userId) => {
     const {id} = e;
     return id === userId; // 'return' needs to be added here due to multiple lines
   });
-  console.log(pokemon);
+  if(pokemon) {   
+    const pokemonUrl = `${allPokemonListUrl}/${pokemon.id}`;
+    fetchPokemonData(pokemonUrl);   
+    }
+    else {
+      alert("Pokémon not found");
+    }
+
 } 
 
-fetchData(124);
+//fetchData(124);
 
 //-----------------------
 const searchName = (data, userName) => {
   const {results} = data;
   const pokemon = results.find((e) => {
     const {name} = e;
-    return name === userName; // Agrega 'return' aquí
+    return name === userName; // 'return' needs to be added here due to multiple lines
   });
-  console.log(pokemon);
+  if (pokemon) {
+const pokemonUrl = `${allPokemonListUrl}/${pokemon.name}`;
+fetchPokemonData(pokemonUrl); 
+  }
+  else {
+      alert("Pokémon not found");
+  }
+  
 } 
 
-fetchData("scyther");
+//fetchData("scyther");
+
+
+//-----------------------
+const fetchPokemonData = async (pokemonUrl) => {
+   try {
+    const response = await fetch(pokemonUrl);
+    const pokemonData = await response.json();
+    //console.log(pokemonData); //Only to check whether the data is well-fetched
+    displayResults(pokemonData); 
+
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+//-----------------------
+const displayResults = (pokemonData) => {
+  const {id, name,sprites, height, weight, stats, types} = pokemonData;
+  pokemonName.innerHTML = `${name.toUpperCase()} `
+  pokemonId.innerHTML = `#${id}`
+
+  pokemonHeight.innerHTML = `Height: ${height}`
+  pokemonWeight.innerHTML = ` |  Weight: ${weight}`
+
+  pokemonImgContainer.innerHTML = `<img src="${sprites.front_default}" alt="${name}#${id}" loading="lazy">`
+
+pokemonImgContainer.innerHTML += `<img src="${sprites.back_default}" alt="${name}#${id}" loading="lazy">`
+ /* hpTag.innerHTML = 
+  attackTag.innerHTML = 
+  defenseTag.innerHTML = 
+  spAttackTag.innerHTML = 
+  spDefenseTag.innerHTML = 
+  speedTag.innerHTML = 
+*/
+}
+
 /* Events */
 //-----------------------
-//searchButton.addEventListener("click", checkUserInput)
+searchButton.addEventListener("click", () => checkUserInput(searchInput.value)); //I reckon it would work without the arrow function if there were not a parameter
 searchInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
-    console.log("It works!!!")
+    checkUserInput(searchInput.value)
+    //console.log("It works!!!")
   }
 })
 
