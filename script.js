@@ -6,12 +6,13 @@ const pokemonId = document.getElementById("pokemon-id");
 const pokemonImgContainer = document.getElementById("pokemon-img-container");
 const pokemonHeight = document.getElementById("height");
 const pokemonWeight = document.getElementById("weight");
-const hpTag = document.getElementById("hp-tag");
-const attackTag = document.getElementById("attack-tag");
-const defenseTag = document.getElementById("defense-tag");
-const spAttackTag = document.getElementById("sp-attack-tag");
-const spDefenseTag = document.getElementById("sp-defense-tag");
-const speedTag = document.getElementById("speed-tag");
+const typesContainer = document.getElementById("types");
+const hpTag = document.getElementById("hp");
+const attackTag = document.getElementById("attack");
+const defenseTag = document.getElementById("defense");
+const spAttackTag = document.getElementById("special-attack");
+const spDefenseTag = document.getElementById("special-defense");
+const speedTag = document.getElementById("speed");
 const allPokemonListUrl = "https://pokeapi-proxy.freecodecamp.rocks/api/pokemon";
 
 /* Functions */
@@ -113,23 +114,43 @@ const fetchPokemonData = async (pokemonUrl) => {
 //-----------------------
 const displayResults = (pokemonData) => {
   const {id, name,sprites, height, weight, stats, types} = pokemonData;
+
   pokemonName.innerHTML = `${name.toUpperCase()} `
   pokemonId.innerHTML = `#${id}`
-
   pokemonHeight.innerHTML = `Height: ${height}`
-  pokemonWeight.innerHTML = ` |  Weight: ${weight}`
+  pokemonWeight.innerHTML = ` Weight: ${weight}`
 
-  pokemonImgContainer.innerHTML = `<img src="${sprites.front_default}" alt="${name}#${id}" loading="lazy">`
+  pokemonImgContainer.innerHTML = `<img id="sprite" src="${sprites.front_default}" alt="${name}#${id}" loading="lazy">`
 
 pokemonImgContainer.innerHTML += `<img src="${sprites.back_default}" alt="${name}#${id}" loading="lazy">`
- /* hpTag.innerHTML = 
-  attackTag.innerHTML = 
-  defenseTag.innerHTML = 
-  spAttackTag.innerHTML = 
-  spDefenseTag.innerHTML = 
-  speedTag.innerHTML = 
-*/
+
+typesContainer.innerHTML = "";
+
+/*If I place it bellow, types is not read */
+ for (let i in types) {
+  const {type} = types[i];
+  console.log(type)
+  const {name} = type;
+  console.log(name)
+  typesContainer.innerHTML += `<div id="${name.toUpperCase()}" class="types">${name.toUpperCase()}</div>`;
+} 
+
+/*Safer method*/
+const hp = stats.find((e) => 
+{const {stat} = e;
+return stat.name === "hp";
+}).base_stat
+
+hpTag.innerHTML = `${hp}`;
+ 
+ /*Lazy method*/
+  attackTag.innerHTML = `${stats[1].base_stat}`
+  defenseTag.innerHTML = `${stats[2].base_stat}`
+  spAttackTag.innerHTML = `${stats[3].base_stat}`
+  spDefenseTag.innerHTML = `${stats[4].base_stat}`
+  speedTag.innerHTML = `${stats[5].base_stat}`
 }
+
 
 /* Events */
 //-----------------------
@@ -137,7 +158,7 @@ searchButton.addEventListener("click", () => checkUserInput(searchInput.value));
 searchInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     checkUserInput(searchInput.value)
-    //console.log("It works!!!")
+
   }
 })
 

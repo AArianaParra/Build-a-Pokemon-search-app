@@ -113,7 +113,7 @@
   img {
     width: 50%;
     height: 100%;
-    //cursor: not-allowed;
+    /*cursor: not-allowed;*/
   }
   
   #pokemon-height-weight-tag {
@@ -124,20 +124,108 @@
   }
   
   #types {
-    height: 50px;
+    height: 90px;
     position: absolute;
     top: 308px;
     left: 0;
-    padding: 5px;
+    padding-left: 13px;
+    display: flex;
+    column-gap: 10px;
   }
   
-   //For the dynamic types
+   /*For the dynamic types */
   .types {
+    display: inline;
     height: 35px;
-    width: 80px;
+    width: 84px;
     border-radius: 10px;
     vertical-align: center;
+    padding: 8px;
+    font-size: 0.9rem;
   }
+  
+  #bug {
+    background: rgb(158, 170, 73);
+    color: white;
+  }
+  
+  #dark {
+    background: rgb(62, 62, 74);
+    color: white;
+  }
+  
+  #dragon {
+    background: rgb(70, 70, 190);
+    color: white;
+  }
+  
+  #electric {
+    background: yellow;
+  }
+  
+  #fairy {
+    background: rgb(241, 180, 241);
+  }
+  
+  #fighting {
+    background: orange;
+    color: white;
+  }
+  
+  #fire {
+    background: rgb(212, 14, 47);
+    color: white;
+  }
+  
+  #flying {
+    background: rgba(148, 209, 239, 0.471);
+  }
+  
+  #ghost {
+    background: rgba(103, 12, 105, 0.998);
+    color: white;
+  }
+  
+  #grass {
+    background: rgb(50, 235, 26);
+  }
+  
+  #ground {
+    background: rgba(115, 51, 51, 0.909);
+    color: white;
+  }
+  
+  #ice {
+    background: rgb(89, 208, 248);
+  }
+  
+  #normal {
+    background: rgb(186, 185, 182);
+  }
+  
+  #psychic {
+    background: rgb(238, 125, 144);
+  }
+  
+  #poison {
+    background: rgba(169, 36, 171, 0.998);
+    color: white;
+  }
+  
+  #rock {
+    background: rgba(178, 192, 132, 0.998);
+  }
+  
+  #steel {
+    background: rgb(113, 163, 232);
+    color: white;
+  }
+  
+  #water {
+    background: rgb(50, 107, 221);
+    color: white;
+  }
+  
   
   #pokemon-features-table-container {
     padding: 8px;
@@ -168,5 +256,11 @@
   /*MEDIA*/
   
   @media screen and (max-width: 480px) {
-    
+    #behind-search-background {
+    width: 280px;
+    height: 980px;
+  }
+  #types {
+    top: 338px;
+  }
   }
